@@ -1,6 +1,6 @@
 export interface Product {
   quantity: number;
-  _id: string; // Use 'string' for IDs from Sanity
+  _id: string; 
   title: string;
   price: number;
   tags?: string[];

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
@@ -5,9 +6,9 @@ import { Product } from "../../types/product";
 
 interface CartItem extends Product {
   price: number;
-  _id: Key | null | undefined;
+  _id: string;
   title: string;
-  imageUrl(imageUrl: any): unknown;
+  imageUrl:string;
   quantity: number;
 }
 
@@ -69,10 +70,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, 
-    addToCart, removeFromCart, 
-    decreaseQuantity,
-     increaseQuantity, clearCart }}>
+    <CartContext.Provider value={{
+      cartItems,
+      addToCart, removeFromCart,
+      decreaseQuantity,
+      increaseQuantity, clearCart
+    }}>
       {children}
     </CartContext.Provider>
   );
