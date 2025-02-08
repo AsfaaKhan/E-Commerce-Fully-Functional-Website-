@@ -9,7 +9,6 @@ import { CiHeart } from "react-icons/ci";
 import { BsCartPlusFill } from "react-icons/bs";
 
 
-// Define WishlistItem type (if not already defined)
 interface WishlistItem {
   id: string;
   title: string;
