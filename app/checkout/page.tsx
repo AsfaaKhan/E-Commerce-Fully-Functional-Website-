@@ -82,19 +82,18 @@ export default function CheckoutPage() {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: '#d33',
+
       confirmButtonText: 'Proceed',
     }).then((result) => {
       if (result.isConfirmed) {
         if (validateForm()) {
           localStorage.removeItem("appliedDiscount")
-
           Swal.fire(
             'Success!',
             'Your order has been successfully placed! ',
             'success'
           )
-          localStorage.removeItem("appliedDiscount")
-
+          
         } else {
           Swal.fire(
             'Error',
@@ -127,12 +126,9 @@ export default function CheckoutPage() {
 
     try {
       await client.create(orderData);
-      localStorage.removeItem("appliedDiscount")
-
     } catch (error) {
       console.error("Error creating order:", error);
     }
-
   }
   return (
     <div className="container min-h-screen mx-auto p-4 mb-14">
