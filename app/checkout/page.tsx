@@ -59,7 +59,7 @@ export default function CheckoutPage() {
       [e.target.id]: e.target.value
     })
   }
-  
+
   const validateForm = () => {
     const errors = {
       firstName: !formValues.firstName,
@@ -73,36 +73,26 @@ export default function CheckoutPage() {
     setFormErrors(errors);
     return Object.values(errors).every((error) => !error)
   }
+  
+  const handlePlaceOrder = () => {
+    if (validateForm()) {
+      localStorage.removeItem("appliedDiscount")
+      Swal.fire(
+        'Success!',
+        'Your order has been successfully placed! ',
+        'success'
+      )
+      localStorage.removeItem("appliedDiscount")
 
-  const handlePlaceOrder = async () => {
-    Swal.fire({
-      title: 'Processing Your Order...',
-      text: 'Please wait a moment',
-      icon: 'info',
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: '#d33',
+    }
+    else {
+      Swal.fire(
+        'Error',
+        'Please fill in all the fields before proceeding',
+        'error'
+      )
+    }
 
-      confirmButtonText: 'Proceed',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (validateForm()) {
-          localStorage.removeItem("appliedDiscount")
-          Swal.fire(
-            'Success!',
-            'Your order has been successfully placed! ',
-            'success'
-          )
-          
-        } else {
-          Swal.fire(
-            'Error',
-            'Please fill in all the fields before proceeding',
-            'error'
-          )
-        }
-      }
-    })
 
     // Prepare the order data
     const orderData = {
@@ -125,11 +115,12 @@ export default function CheckoutPage() {
     };
 
     try {
-      await client.create(orderData);
+      client.create(orderData);
     } catch (error) {
       console.error("Error creating order:", error);
     }
   }
+
   return (
     <div className="container min-h-screen mx-auto p-4 mb-14">
       <div className=" container mt-28 md:mt-20">

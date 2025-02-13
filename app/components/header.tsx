@@ -50,18 +50,6 @@ const Header = () => {
                     {/*         Navbar Icons Anths        */}
                     <div className="flex  items-center ">
                         <div className=" ">
-                            <button className=" hidden text-skyblue lg:flex justify-center text-center items-center">
-                                <SignedOut>
-                                    <SignInButton />
-                                </SignedOut>
-                                <SignedIn>
-                                    <SignOutButton />
-                                </SignedIn>
-                            </button>
-                        </div>
-                        <div>
-                        </div>
-                        <div className=" ">
                             <Link href="/cart" className="relative">
                                 <PiShoppingCart size={24} />
                                 {cartItems.length >= 0 && (
@@ -115,7 +103,6 @@ const Header = () => {
                 )}
             </nav>
             <div className="border-[0.5px]"></div>
-
         </div>
     )
 }
